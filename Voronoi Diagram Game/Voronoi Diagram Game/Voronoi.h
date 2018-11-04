@@ -63,8 +63,11 @@ private:
 
 	void CreateColors() {
 		for (size_t i = 0; i < points_.size(); i++) {
-			DWORD c = RGB(rand() % 200 + 50, rand() % 200 + 55, rand() % 200 + 50);
+			DWORD c = RGB(255, 0,0); //red
+			DWORD d = RGB(0, 0, 255); //blue
+
 			colors_.push_back(c);
+			colors_.push_back(d);
 		}
 	}
 
