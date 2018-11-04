@@ -57,7 +57,7 @@ private:
 	void CreatePoints(int count) {
 		const int w = bmp_->width() - 20, h = bmp_->height() - 20;
 		for (int i = 0; i < count; i++) {
-			points_.push_back({ rand() % w + 10, rand() % h + 10 });
+			points_.push_back({ rand() % w + 10, rand() % h + 10 }); //where the black points are placed.
 		}
 	}
 
