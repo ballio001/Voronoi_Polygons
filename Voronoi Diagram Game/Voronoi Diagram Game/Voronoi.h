@@ -12,7 +12,6 @@ static int DistanceSqrd(const Point& point, int x, int y) {
 	return (xd * xd) + (yd * yd);
 }
 
-//////////////////////////////////////////////////////
 class Voronoi {
 public:
 	void Make(MyBitmap* bmp, int count) {
