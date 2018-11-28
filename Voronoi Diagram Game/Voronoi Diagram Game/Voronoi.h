@@ -22,15 +22,17 @@ public:
 		SetSitesPoints();
 	}
 
-private:
-	void CreateSites() {
+	void CreateSites() { //voronoi triangulation mathematics
 		int w = bmp_->width(), h = bmp_->height(), d;
+
 		for (int hh = 0; hh < h; hh++) {
 			for (int ww = 0; ww < w; ww++) {
+
 				int ind = -1, dist = INT_MAX;
+
 				for (size_t it = 0; it < points_.size(); it++) {
 					const Point& p = points_[it];
-					d = DistanceSqrd(p, ww, hh);
+					d = DistanceSqrd(p, ww, hh); //lines between points
 					if (d < dist) {
 						dist = d;
 						ind = it;
@@ -47,6 +49,7 @@ private:
 	void SetSitesPoints() {
 		for (const auto& point : points_) {
 			int x = point.x, y = point.y;
+
 			for (int i = -1; i < 2; i++)
 				for (int j = -1; j < 2; j++)
 					SetPixel(bmp_->hdc(), x + i, y + j, 0);
@@ -55,6 +58,7 @@ private:
 
 	void CreatePoints(int count) {
 		const int w = bmp_->width() - 20, h = bmp_->height() - 20;
+
 		for (int i = 0; i < count; i++) {
 			points_.push_back({ rand() % w + 10, rand() % h + 10 }); //where the black points are placed.
 		}
