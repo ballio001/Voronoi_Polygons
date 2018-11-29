@@ -62,6 +62,8 @@ public:
 
 		for (int i = 0; i < count; i++) {
 			points_.push_back({ rand() % w + 10, rand() % h + 10 }); //where the black points are placed.
+			//add position of mouse
+			//push back position of mouse and create a dot there
 		}
 	}
 
