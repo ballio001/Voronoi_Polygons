@@ -27,7 +27,6 @@ public:
 	void GetPointsOnMousePosition() {
 		int x, y;
 		SDL_GetMouseState(&x, &y);
-		int d;
 		isClicked = true;
 		cout << x << " and " << y << endl;
 
