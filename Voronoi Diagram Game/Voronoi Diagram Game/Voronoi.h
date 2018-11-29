@@ -7,7 +7,6 @@
 #include <string>
 
 bool isClicked = false;
-POINT p;
 
 static int DistanceSqrd(const Point& point, int x, int y) {
 	int xd = x - point.x;
@@ -26,43 +25,16 @@ public:
 	}
 
 	void GetPointsOnMousePosition() {
+		int x, y;
+		SDL_GetMouseState(&x, &y);
 		int d;
-		if (GetCursorPos(&p))
-		{
-			//p.x = bmp_->width() - 20;
-			//p.y = bmp_->height() - 20;
-			isClicked = true;
+		isClicked = true;
+		cout << x << " and " << y << endl;
 
-			cout << p.x << " and " << p.y << endl;
-
-			points_.push_back({ p.x, p.y }); //where the black points are placed.
-
-			cout << p.x << " after creating points " << p.y << endl;
-
-			for (int hh = 0; hh < p.y; hh++) {
-				for (int ww = 0; ww < p.x; ww++) {
-
-					int ind = -1, dist = INT_MAX;
-
-					for (size_t it = 0; it < points_.size(); it++) {
-						const Point& p = points_[it];
-						d = DistanceSqrd(p, ww, hh); //lines between points
-						if (d < dist) {
-							dist = d;
-							ind = it;
-						}
-					}
-
-					if (ind > -1)
-						SetPixel(bmp_->hdc(), ww, hh, colors_[ind]);
-					else
-						__asm nop // should never happen!
-
-				}
-			}
-			SetPixel(bmp_->hdc(), p.x, p.y, 0); // color can be changed here
-			cout << p.x << " after creating sites " << p.y << endl;
-		}
+		points_.push_back({ x, y }); //where the black points are placed.
+		CreateColors();
+		CreateSites();
+		SetSitesPoints();
 	}
 
 	void CreateSites() { //voronoi triangulation mathematics
@@ -110,8 +82,8 @@ public:
 
 	void CreateColors() {
 		for (size_t i = 0; i < points_.size(); i++) {
-			DWORD c = RGB(255, 0,0); //red
-			DWORD d = RGB(0, 0, 255); //blue
+			DWORD c = RGB(200, 50,50); //red
+			DWORD d = RGB(50, 50, 200); //blue
 
 			colors_.push_back(c);
 			colors_.push_back(d);
