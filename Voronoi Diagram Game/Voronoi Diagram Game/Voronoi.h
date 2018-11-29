@@ -46,6 +46,7 @@ public:
 			}
 		}
 	}
+
 	void SetSitesPoints() {
 		for (const auto& point : points_) {
 			int x = point.x, y = point.y;
