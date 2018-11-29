@@ -6,6 +6,9 @@
 #include <vector>
 #include <string>
 
+bool isClicked = false;
+POINT p;
+
 static int DistanceSqrd(const Point& point, int x, int y) {
 	int xd = x - point.x;
 	int yd = y - point.y;
@@ -20,6 +23,46 @@ public:
 		CreateColors();
 		CreateSites();
 		SetSitesPoints();
+	}
+
+	void GetPointsOnMousePosition() {
+		int d;
+		if (GetCursorPos(&p))
+		{
+			//p.x = bmp_->width() - 20;
+			//p.y = bmp_->height() - 20;
+			isClicked = true;
+
+			cout << p.x << " and " << p.y << endl;
+
+			points_.push_back({ p.x, p.y }); //where the black points are placed.
+
+			cout << p.x << " after creating points " << p.y << endl;
+
+			for (int hh = 0; hh < p.y; hh++) {
+				for (int ww = 0; ww < p.x; ww++) {
+
+					int ind = -1, dist = INT_MAX;
+
+					for (size_t it = 0; it < points_.size(); it++) {
+						const Point& p = points_[it];
+						d = DistanceSqrd(p, ww, hh); //lines between points
+						if (d < dist) {
+							dist = d;
+							ind = it;
+						}
+					}
+
+					if (ind > -1)
+						SetPixel(bmp_->hdc(), ww, hh, colors_[ind]);
+					else
+						__asm nop // should never happen!
+
+				}
+			}
+			SetPixel(bmp_->hdc(), p.x, p.y, 0); // color can be changed here
+			cout << p.x << " after creating sites " << p.y << endl;
+		}
 	}
 
 	void CreateSites() { //voronoi triangulation mathematics
@@ -62,8 +105,6 @@ public:
 
 		for (int i = 0; i < count; i++) {
 			points_.push_back({ rand() % w + 10, rand() % h + 10 }); //where the black points are placed.
-			//add position of mouse
-			//push back position of mouse and create a dot there
 		}
 	}
 
