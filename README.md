@@ -8,3 +8,4 @@ download the SDL files either search them through google or search for a setup t
 for extra info here is 
 
 a site that would work with downloading the SDL stuff is here :http://www.libsdl.org/download-2.0.php
+this youtube tutorial might work aswell: https://www.youtube.com/watch?v=QQzAHcojEKg
