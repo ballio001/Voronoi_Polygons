@@ -10,8 +10,6 @@ for extra info here is
 a site that would work with downloading the SDL stuff is here :http://www.libsdl.org/download-2.0.php
 this youtube tutorial might work aswell: https://www.youtube.com/watch?v=QQzAHcojEKg
 
-for referencing:
-
-Name: Onur Balli
-
-Made in: 2018
+for referencing: 
+Name: Onur Balli 
+Made in: 2018 
